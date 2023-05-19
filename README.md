@@ -1,2 +1,2 @@
-# VinyRecords-SpringBoot
+# VinyRecordCoolList-SpringBoot
 Vinyl Records list
