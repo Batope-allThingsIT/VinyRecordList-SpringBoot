@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Single Record</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--    This is the bootstrap CDN that we are using to use boostrap classes for designing-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>-->
+</head>
+<style>
+    body {
+        font-family: system-ui;
+    }
+
+    p {
+        font-size: 14px;
+    }
+</style>
+<body>
+<div class="container">
+    <h1 style="text-align: left; font-size: 40px !important;"
+        th:text="${vinyl.getTitle()}"></h1>
+    <hr>
+
+    <div style="width:200px;float:left;font-size: 17px;font-weight: bold">Artist</div>
+    <div><p th:text="${vinyl.getArtist()}"></p></div>
+    <hr>
+    <div style="width:200px;float:left;font-size: 17px;font-weight: bold">Label</div>
+    <div><p th:text="${vinyl.getLabel()}"></p></div>
+    <hr>
+    <div style="width:200px;float:left;font-size: 17px;font-weight: bold">Year Released</div>
+    <div><p th:text="${vinyl.getYearReleased()}"></p></div>
+    <hr>
+    <div style="width:200px;float:left;font-size: 17px;font-weight: bold">Number of Tracks</div>
+    <div><p th:text="${vinyl.getNumOfTracks()}"></p></div>
+    <hr>
+     <div style="width:200px;float:left;font-size: 17px;font-weight: bold">Size</div>
+    <div><p th:text="${vinyl.getSize()}"></p></div>
+    <hr>
+
+    <div th:if="${vinyl.isDamaged()}" style="background-color: moccasin;padding: 10px;margin-bottom: 10px;width: 650px">
+        <p style="font-size: 22px;font-weight: bold;text-align: center;">This record is damaged!</p>
+    </div>
+
+</div>
+<div class="container">
+    <a th:href="@{/records}"
+       class="btn btn-info">View All Records</a>
+</div>
+</body>
+</html>

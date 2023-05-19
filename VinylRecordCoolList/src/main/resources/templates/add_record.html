@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>Add Record</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--    This is the bootstrap CDN that we are using to use boostrap classes for designing-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>-->
+</head>
+<style>
+    body {
+        font-family: system-ui;
+    }
+
+    .alert {
+        color: red;
+    }
+
+    #specialMessage {
+        background-color: blanchedalmond;
+        margin-top: 20px;
+    }
+</style>
+<body>
+<div>
+    <div class="container">
+        <h1 style="text-align: left;font-size: 30px !important;">Add Record</h1>
+        <hr>
+        <form th:action="@{/add-record}" th:object="${vinyl}" method="post" class="form">
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input class="form-control" type="text" th:field="*{title}" id="title">
+                <div class="alert alert-warning" th:if="${#fields.hasErrors('title')}"
+                     th:errors="*{title}"></div>
+            </div>
+            <div class="form-group">
+                <label for="artist">Artist</label>
+                <input class="form-control" type="text" th:field="*{artist}" id="artist"
+                >
+                <div class="alert alert-warning" th:if="${#fields.hasErrors('artist')}"
+                     th:errors="*{artist}"></div>
+            </div>
+            <div class="form-group">
+                <label for="label">Label</label>
+                <input class="form-control" type="text" th:field="*{label}" id="label"
+                >
+                <div class="alert alert-warning" th:if="${#fields.hasErrors('label')}"
+                     th:errors="*{label}"></div>
+            </div>
+            <div class="form-group">
+                <label for="yearReleased">Year Released</label>
+                <input class="form-control" type="number" placeholder="YYYY" min="0000"
+                       th:field="*{yearReleased}" id="yearReleased"
+                >
+                <div class="alert alert-warning" th:if="${#fields.hasErrors('yearReleased')}"
+                     th:errors="*{yearReleased}"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="numOfTracks">Number of Tracks</label>
+                <input class="form-control" type="number"
+                       th:field="*{numOfTracks}" id="numOfTracks"
+                >
+                <div class="alert alert-warning" th:if="${#fields.hasErrors('numOfTracks')}"
+                     th:errors="*{numOfTracks}"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="numOfTracks">Size</label>
+                <select th:field="*{size}">
+                    <option th:value="7" th:text="7"></option>
+                    <option th:value="10" th:text="10"></option>
+                    <option th:value="12" th:text="12"></option>
+                </select>
+                <div class="alert alert-warning" th:if="${#fields.hasErrors('size')}"
+                     th:errors="*{size}"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="isDamaged">Is Damaged?</label>
+                <input type="checkbox"
+                       th:field="*{damaged}" id="isDamaged" value="true">
+                <div class="alert alert-warning" th:if="${#fields.hasErrors('damaged')}"
+                     th:errors="*{damaged}"></div>
+            </div>
+
+            <input type="submit" class="btn btn-success btn-lg btn-block">
+        </form>
+    </div>
+
+    <div class="container" id="specialMessage">
+        <p style="text-align: left; font-size: 20px !important; padding: 5px">
+            <span th:text="${totalRecords}"></span> records will exist in the collection after the form is submitted
+        </p>
+    </div>
+</div>
+</body>
+</html>

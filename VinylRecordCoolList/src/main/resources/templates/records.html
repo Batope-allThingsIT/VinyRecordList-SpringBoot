@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Records</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--    This is the bootstrap CDN that we are using to use boostrap classes for designing-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>-->
+</head>
+<style>
+    body {
+        font-family: system-ui;
+    }
+</style>
+<div class="container">
+    <div style="width:700px;float:left;">
+        <h1 style="text-align: left; font-size: 45px !important;">Record
+            Inventory</h1>
+    </div>
+    <div style="float:right;margin-top: 40px;">
+        <a th:href="@{/add-record}"
+           class="btn btn-info">Add Record</a>
+    </div>
+</div>
+<div class="container">
+    <hr>
+    <div th:if="${vinylsList.size==0}" class="jumbotron jumbotron-fluid" style="background-color: lightblue">
+        <div class="container">
+            <h1 style="font-size: 30px">No Record Exists</h1>
+            <p>Add a record to get started with your Collection!</p>
+        </div>
+    </div>
+    <table class="table table-bordered table-responsive-md" id="table_id" th:if="${vinylsList.size!=0}">
+        <thead>
+        <tr>
+            <th>Title</th>
+            <th>Artist</th>
+            <th>Year Released</th>
+            <th>More Info</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="vinyl : ${vinylsList}">
+            <td th:text="${vinyl.title}"></td>
+            <td th:text="${vinyl.artist}"></td>
+            <td th:text="${vinyl.yearReleased}"></td>
+            <td>
+                <a th:href="@{/records/{id}(id=${vinyl.id})}"
+                   class="btn btn-info">View More</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
